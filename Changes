@@ -1,0 +1,17 @@
+0.99:  Thu Nov  9 07:52:18 EST 2000
+   - jettero set up a bitchen suite of tests. Bless the t/
+     dir!
+
+0.48:  Thu Nov  9 07:52:02 EST 2000
+   - jettero got the code done...
+
+0.07:  Thu Nov  9 07:38:43 EST 2000
+   - jettero got this h2xs'd and installed my special
+     versioning kit
+
+Revision history for Perl extension Math::Business::EMA.
+
+0.01  Wed Nov  8 14:14:02 2000
+        - original version; created by h2xs 1.20 with
+          options -n Math::Business::EMA -X
+

@@ -1,0 +1,15 @@
+Changes
+EMA.pm
+distclean
+Distro
+example.pl
+fix_alsos
+format.scr
+MANIFEST
+I
+Makefile.PL
+makeitromscratch
+manifestbuilder
+t/load.t
+t/insert.t
+t/calculate.t
