@@ -1,3 +1,19 @@
+1.04:  Tue Jun  4 20:06:21 EDT 2002
+   - jettero updated the dist a bit more
+
+1.03:  Tue Jun  4 20:02:58 EDT 2002
+   - jettero made a few distribution changes and updated
+     documentation.
+
+1.02:  Tue Jun  4 18:22:01 EDT 2002
+   - jettero updated this slightly...
+
+1.01:  Fri Dec 15 13:09:11 EST 2000
+   - jettero got this thing re-tested
+
+1:  Fri Dec 15 13:07:52 EST 2000
+   - jettero removed the Gtk requirement
+
 0.99:  Thu Nov  9 07:52:18 EST 2000
    - jettero set up a bitchen suite of tests. Bless the t/
      dir!

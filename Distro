@@ -1,26 +1,22 @@
 #!/bin/sh
 
-if [ ! -d ../archives ]; then
-    echo looser ...
-    exit 1
-fi
-
 ./distclean
 perl Makefile.PL && make dist
 
 if [ -d ~/www/PerlModules ]; then
-    n=`ls Ma*gz`;
+    n=`ls Ma*EMA*gz`;
+    date=`date`;
     cat EMA.pm | pod2html > ~/www/PerlModules/EMA.html
-    rm -vf pod* ~/www/PerlModules/Ma*gz
-    cp -v Ma*gz ~/www/PerlModules
+    rm -vf pod* ~/www/PerlModules/Ma*EMA*gz
+    mv -v Ma*EMA*gz ~/www/PerlModules
 cat > ~/www/PerlModules/EMA.b.html << EOF
 <p>
 I used this for some calculations in my work trying to crack the stock market.
 I'd reall like to find a way to win that game.  Anyway, this calculates the
 Exponential moving average for you.  The <a href="?eo_cat=EMA.html">Math::Business::EMA module</a> 
 (<a href="$n">$n</a>).
+Last updated on $date.
 EOF
 fi
 
-mv -v  Ma*gz ../archives
-chmod -v 644 ~/www/PerlModules/EMA.* ~/www/PerlModules/Ma*gz
+chmod -v 644 ~/www/PerlModules/EMA.* ~/www/PerlModules/Ma*EMA*gz

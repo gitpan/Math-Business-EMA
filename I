@@ -24,3 +24,5 @@ if [ -f $p ]; then
     head -20 $p
 fi
 
+
+cvs ci -m ok

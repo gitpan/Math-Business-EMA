@@ -2,5 +2,4 @@
 
 perl Makefile.PL skip_stuff
 make distclean 
-./fix_alsos
 ./manifestbuilder

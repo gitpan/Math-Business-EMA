@@ -1,22 +1,13 @@
 package Math::Business::EMA;
 
-require 5.005_62;
 use strict;
 use warnings;
 
-require Exporter;
-use AutoLoader qw(AUTOLOAD);
-
-our @ISA = qw(Exporter);
-
-our %EXPORT_TAGS = ( 'all' => [ qw( ) ] );
-our @EXPORT_OK   = ( @{ $EXPORT_TAGS{'all'} } );
-our @EXPORT      = qw( );
-our $VERSION = '0.99';
+our $VERSION = '1.04';
 
 use Carp;
 
-return 1;
+1;
 
 sub new { 
     bless {
@@ -43,6 +34,7 @@ sub insert {
     croak "You must set the number of days before you try to insert" if not $this->{R};
 
     $this->{EMA} = $this->{EMA} ? ( $arg * $this->{R} ) + ( $this->{EMA} * $this->{R1} ) : $arg;
+    # implicit return is documented ...
 }
 
 sub query {
@@ -65,11 +57,15 @@ Math::Business::EMA - Perl extension for calculating EMAs
 
   set_days $ema 3;
 
-  insert $ema 10;
-  insert $ema 13;
-  insert $ema 14;
+  my @closing_values = qw(
+      3 4 4 5 6 5 6 5 5 5 5 
+      6 6 6 6 7 7 7 8 8 8 8 
+  );
 
-  print "The average so far is: ", $ema->query, ".\n";
+  foreach(@closing_values) {
+      $ema->insert( $_ );
+      print "EMA value: ", $ema->query, ".\n";
+  }
 
 =head1 AUTHOR
 
