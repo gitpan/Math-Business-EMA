@@ -3,17 +3,19 @@ package Math::Business::EMA;
 use strict;
 use warnings;
 
-our $VERSION = '1.05';
+our $VERSION = '1.06';
 
 use Carp;
+use Math::Business::SMA;
 
 1;
 
 sub new { 
     bless {
-        EMA => 0,
+        EMA => undef,
         R   => 0,
         R1  => 0,
+        SMA => Math::Business::SMA->new,
     } 
 }
 
@@ -23,8 +25,9 @@ sub set_days {
 
     croak "days must be a positive non-zero integer" if $arg <= 0;
 
-    $this->{R}  = 2.0 / (1.0 + $arg);
-    $this->{R1} = (1 - $this->{R});
+    $this->{R}   = 2.0 / (1.0 + $arg);
+    $this->{R1}  = (1 - $this->{R});
+    $this->{SMA}->set_days( $arg );
 }
 
 sub insert {
@@ -33,8 +36,15 @@ sub insert {
 
     croak "You must set the number of days before you try to insert" if not $this->{R};
 
-    $this->{EMA} = $this->{EMA} ? ( $arg * $this->{R} ) + ( $this->{EMA} * $this->{R1} ) : $arg;
-    # implicit return is documented ...
+    my $retval = undef;
+    if( $this->{EMA} ) {
+        $this->{EMA} = ( $arg * $this->{R} ) + ( $this->{EMA} * $this->{R1} );
+    } else {
+        $this->{SMA}->insert( $arg );
+        if( my $q = $this->{SMA}->query ) {
+            $this->{EMA} = $q;
+        }
+    }
 }
 
 sub start_with {
@@ -71,7 +81,15 @@ Math::Business::EMA - Perl extension for calculating EMAs
 
   foreach(@closing_values) {
       $ema->insert( $_ );
-      print "EMA value: ", $ema->query, ".\n";
+      if( defined(my $q = $ema->query) ) {
+          # The first entry is the value of the simple 
+          # moving average
+          print "EMA value: $q.\n";  
+      } else {
+          # this is undefined until there's at least
+          # $days worth of data...
+          print "EMA value: n/a.\n";
+      }
   }
 
   # to avoid recalculating huge lists when 

@@ -1,3 +1,9 @@
+1.06:  Thu Dec  5 14:28:46 EST 2002
+   - jettero intruduced the
+     undef-until-there-is-enough-data-concept, then used the
+     ::SMA result to calculate the first EMA entry (like
+     you're supposed to).
+
 1.05:  Sun Oct 13 11:16:11 EDT 2002
    - jettero added the start_with function
 

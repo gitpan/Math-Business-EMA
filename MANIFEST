@@ -8,9 +8,7 @@ I
 t/CVS/Root
 t/CVS/Repository
 t/CVS/Entries
-t/calculate.t
-t/insert.t
-t/load.t
+t/main.t
 Makefile.PL
 distclean
 .cvsignore
