@@ -3,7 +3,7 @@ package Math::Business::EMA;
 use strict;
 use warnings;
 
-our $VERSION = '1.04';
+our $VERSION = '1.05';
 
 use Carp;
 
@@ -37,6 +37,13 @@ sub insert {
     # implicit return is documented ...
 }
 
+sub start_with {
+    my $this = shift;
+       $this->{EMA} = shift;
+
+    croak "undefined arg to start_with" unless defined $this->{EMA};
+}
+
 sub query {
     my $this = shift;
 
@@ -66,6 +73,14 @@ Math::Business::EMA - Perl extension for calculating EMAs
       $ema->insert( $_ );
       print "EMA value: ", $ema->query, ".\n";
   }
+
+  # to avoid recalculating huge lists when 
+  # you add a few new values on the end
+
+  $ema->start_with( $the_last_calculated_value );
+
+  # then continue with a foreach over the newly
+  # inserted values
 
 =head1 AUTHOR
 

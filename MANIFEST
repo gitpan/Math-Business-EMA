@@ -13,6 +13,7 @@ t/insert.t
 t/load.t
 Makefile.PL
 distclean
+.cvsignore
 format.scr
 makeitromscratch
 manifestbuilder
