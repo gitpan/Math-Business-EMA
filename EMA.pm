@@ -3,7 +3,7 @@ package Math::Business::EMA;
 use strict;
 use warnings;
 
-our $VERSION = '1.06';
+our $VERSION = '1.08';
 
 use Carp;
 use Math::Business::SMA;
@@ -11,12 +11,21 @@ use Math::Business::SMA;
 1;
 
 sub new { 
-    bless {
+    my $this = shift;
+       $this = bless {
         EMA => undef,
         R   => 0,
         R1  => 0,
         SMA => Math::Business::SMA->new,
-    } 
+    }, $this;
+
+    my $days = shift;
+
+    if( defined $days ) {
+        $this->set_days( $days );
+    }
+
+    return $this;
 }
 
 sub set_days { 
@@ -99,6 +108,10 @@ Math::Business::EMA - Perl extension for calculating EMAs
 
   # then continue with a foreach over the newly
   # inserted values
+
+  # For short, you can now skip the set_days() by suppling the setting to new():
+
+  my $longer_ema = new Math::Business::EMA(10);
 
 =head1 AUTHOR
 

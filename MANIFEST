@@ -1,19 +1,7 @@
-CVS/Root
-CVS/Repository
-CVS/Entries
-MANIFEST
 Changes
 EMA.pm
-I
-t/CVS/Root
-t/CVS/Repository
-t/CVS/Entries
-t/main.t
+MANIFEST
+META.yml
 Makefile.PL
-distclean
-.cvsignore
-format.scr
-makeitromscratch
-manifestbuilder
-MANIFEST.SKIP
-Distro
+META.yml                                 Module meta-data (added by MakeMaker)
+t/main.t
